@@ -1,0 +1,29 @@
+{% extends "base_static_pages.html" %}
+{% block title %}  Page Cannot be Found {% endblock title %}
+
+{% block metadesc %} Page you are looking for is not available or currently removed from the Lending Stream Short Term Loans website. Go to the Lending Stream home page for more details. {% endblock metadesc %}
+
+{% block metakeys %}Short Term Loans{% endblock metakeys %}
+
+{% block login_section %}
+{% endblock login_section %}
+{% block applynow_section %}
+{% endblock applynow_section %}
+{% block non_login %}
+        <button type="button" class="btn btn-navbar nonlogin" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>                                                                                                                              <div class="nav-collapse collapse span6 nonlogin">
+{% endblock non_login %}
+{%block body %} 
+<section id="static_content">
+<div class="container">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="main-content round-box text-center">
+        <p><i class="icon-warning-sign icon-4x textred"></i> <h2 class="textred">404 ERROR</h2></p>
+        <p><strong>This might be because:</strong></p>
+        <p>You typed the web address incorrectly or the page you are looking for has been moved.</p>
+        <p><strong>Try the following option:</strong></p>
+        <p>Return to <a href="https://www.lendingstream.co.uk/">www.lendingstream.co.uk</a></p>
+       </div><!--main-content-->
+    </div><!--/span12-->
+  </div>
+{% endblock body %}

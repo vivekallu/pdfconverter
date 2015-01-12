@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Html to Pdf</title>
+    <link rel="stylesheet" type="text/css" href="/media/css/bootstrap.css">
+    <!--<link rel="stylesheet" type="text/css" href="/media/css/custom.css">-->
+    <script src="/media/js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/media/js/bootstrap.min.js"></script>
+    <script src="/media/js/bootstrap.file-input.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Html to Pdf</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h2>Convert your html and webpages to Html</h2>
+        <p></p>
+        <p></p>
+<form class="navbar-form navbar-left" role="search" enctype="multipart/form-data" method="post" action="/" id="target">
+    {% csrf_token %}
+   <input type="file" class="form-control input-file btn-primary" name="html_file" id="filebutton"  placeholder="Search">
+    <div class="form-group">
+
+    Or  <input name="url" id="Url" style="width:400px;" type="text" placeholder="Enter the url that you want to convert to pdf">
+        
+    </div>
+    {% if error %}
+    <span class="help-block">Please enter a valid url</span>
+    {% else %}
+    <span class="help-block ">Please upload a file or enter a url</span>
+    {% endif %}
+    <button type="submit" class="btn btn-default btn-primary" value="Save" id="Save">Submit</button>
+</form>
+        
+      </div>
+
+    </div> <!-- /container -->
+<!--
+      <form enctype="multipart/form-data" method="post" action="/">
+    {% csrf_token %}
+      <table>
+     <tr><td>
+     
+     </td></tr>
+     <tr><td>
+     <input type="hidden" value="title" name="title" id="title" />
+     <input type="file" class="input-file btn-primary" name="html_file" id="filebutton">
+     <input name="url" id="Url" style="width:400px;" type="text">
+     <input type="submit" value="Save" id="Save"/>
+     </td></tr>
+     </table>
+    </form>
+  -->
+  <script type="text/javascript">
+  $(document).ready(function()
+{
+$('input[type=file]').bootstrapFileInput();
+$('.file-inputs').bootstrapFileInput();
+}); 
+ 
+  $("input[name='url']").on('click',function(){
+  if($('input[name="html_file"]').val()!=''){
+    $("input[name='url']").prop("disabled", true);
+}
+else
+$("input[name='url']").prop("disabled", false);
+});
+  $("#target").submit(function(event){
+      if($('input[name="html_file"]').val()=='' && $("input[name='url']").val()=='')
+      {
+        event.preventDefault();
+      }
+  });
+  </script>
+
+
+</body>
+</html>

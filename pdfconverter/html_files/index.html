@@ -1,0 +1,56 @@
+<html lang="en">
+    <head>
+	<title>My Bootstrap Tutorial</title>
+	<meta name="viewport" content="width=device-width,inital-scale=1.0">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/mystyle.css" rel="stylesheet">
+    </head>
+    <body>
+	<div class="navbar navbar-inverse navbar-static-top">
+	    <div class="container">
+		<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="icon-bar"></span>		
+			<span class="icon-bar"></span>		
+			<span class="icon-bar"></span>		
+		</button>
+                <a href="#" class="navbar-brand">Tutorial</a>
+	    <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+			<li class="active"><a href="#">Home</a></li>
+		        <li><a href="#">About</a></li>
+			<li><a href="#">Contact</a></li>
+			<li><a href="#">What's New</a></li>
+		</ul> 
+	    
+	    </div>
+	    </div>
+	</div>
+	<div class="jumbotron">
+		<div class="container">
+
+	    <center>
+		<h1>Header Text</h1>
+	        <p>Paragraph text</p>
+	        <a class="btn btn-success btn-lg makeitlarge">Full image</a>
+	    </center>
+		</div>
+	</div>
+	
+	<div id="myCarousel" class="carousel slide">
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
+			<div class="carousel-inner">
+				<div class="item active"><img src="images/new.jpg"></img></div>
+				<div class="item"><img src="images/lending.png"></img></div>
+				<div class="item">Third Slide</div>
+			</div>
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="icon-prev black"></span></a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="icon-next"></span></a>
+	</div>	
+	<script src="http://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+    </body>
+</html>

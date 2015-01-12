@@ -1,0 +1,168 @@
+{% load chunks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block meta %}
+<meta name="description" content="Apply for loans upto &pound;1500 with Lending Stream Payday Loans and repay over 6 months. One of the best cash loans in UK." />
+<meta name="keywords" content="Payday Loans, Cash Loans" />
+{% endblock meta %}
+<title>{% block title %}Account Information{% endblock title %}</title>
+<link href="{{imgdict}}/media/css/common.css" rel="stylesheet" />
+<link href="{{imgdict}}/media/css/main_myaccount.css" rel="stylesheet" />
+</head>
+<body>
+{% ifequal flavor  "desktop" %}
+{% include "tracking_codes.html" %}
+{% else %}
+{% include "mobile_tracking_codes.html" %}
+{% endifequal %}
+{% block topupbanner %}
+{% endblock topupbanner %}
+{% block header %}
+    <header>
+        <div class="container">
+        <div class="outer-container">
+        <div class="row-fluid">
+                <div class="span4">
+                <a href="/"><img src="{{imgdict}}/media/img/ls_logo.png" alt="Lending Stream"></a>
+            </div><!--/span4-->
+            <div class="span8">
+                <p class="text-right"><span class="ls-number">{% if is_postapproval %} {% chunk "ApprovalPagesNumber" %} {% else %} {% chunk "LsAcctSectionNumber" %} {% endif %}<sup>#</sup></span><small class="hidden-tab-phone"><a id="help" href="javascript:void(0)" class="cancel_submit">Need Help?</a></small></p>
+            </div><!--/span8-->
+        </div><!--/row-->
+        </div><!--/outer-container-->
+    </div><!--/container-->
+    {% include 'fadc_loginbar.html' %}
+    </header>
+{% endblock header %}
+{% block body %}
+<section id="loan-summary">
+  <div class="container">
+  <div class="outer-container">
+   </div><!--/outer-container-->
+        </div><!--/container-->
+    </section>
+{% endblock body %}
+<!-- Footer Begins -->
+{% include 'fadc_footer.html' %}
+{% include 'needhelp.html' %}
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- Styles -->
+{% block addstyles %}
+{% endblock addstyles %}
+<!-- Scripts -->
+<script src="{{imgdict}}/media/js/main.js"></script>
+{% block addscripts %}
+{% endblock addscripts %}
+{% block scripts %}
+<script type="text/javascript">
+  $(document).ready(function () {
+     flavor = '{{flavor}}';
+     var helpblocks = $('#help-overlay,#help-top-bar,#help-info,#help-close');
+     $('#help').on('click', function () {
+         ga('send','pageview','/account/help/accsecchallenger/');
+         $(helpblocks).slideDown(200);
+         {% block slide %}
+         $('#help-top-bar-content').slideDown(200);
+         {% endblock slide %}
+         $('body').css('overflow', 'hidden');
+     });
+     $('#help-overlay').on('click',function(){
+         $('#help-top-bar-content').hide();
+         $(helpblocks).hide();
+         $('body').css('overflow', 'auto');
+     });
+     $('#sendUs').on('click', function () {
+         $('#help-top-bar-content').slideToggle(250, function () {
+             $('#ic').toggleClass('icon-chevron-sign-down icon-chevron-sign-up');
+         });
+     });
+     $('.description,.hotspot-label').not('.loan_details').hover(function () {
+	     $(this).parent().css('z-index', $('p.description').length - 1);
+             if ($(this).attr('class') == 'hotspot-label')
+                 $(this).next().addClass('open');
+             else
+                 $(this).addClass('open');
+         },
+         function () {
+	     $(this).parent().css('z-index', 'auto');
+             if ($(this).attr('class') == 'hotspot-label')
+                 $(this).next().removeClass('open');
+             else
+                 $(this).removeClass('open');
+         });
+     $('.help-hotspot').addClass('hide');
+     $('.notes')
+         .focus(function () {
+             if (this.value === this.defaultValue) {
+                 this.value = '';
+             }
+         })
+         .blur(function () {
+             if (this.value === '') {
+                 this.value = this.defaultValue;
+             }
+         });
+     $('.needhelp').click(function () {
+         $('.needhelp').text("Sending");
+         data = {
+             'email': '{{email}}',
+             'feedback': $('.notes').val()
+         };
+         $.ajax({
+             url: '/account/needhelp/',
+             type: 'POST',
+             data: data,
+             success: function (data) {
+                 $('.needhelp').hide();
+                 $('.notes').hide();
+                 $('.needsent').show();
+             }
+         })
+     });
+     $('#help-close').on('click', function () {
+         $(helpblocks).hide();
+         $('#help-top-bar-content').hide();
+         $('body').css('overflow', 'auto');
+     });
+     $(document).keyup(function (e) {
+         if (e.keyCode == 27) {
+             $('#help-top-bar-content').hide();
+             $(helpblocks).hide();
+             $('body').css('overflow', 'auto');
+         }
+     });
+    $('#privacypolicy').on('shown', function () { $('#privacypolicy .modal-body').focus(); });
+    $('#risk_exp').on('shown', function () { $('#risk_exp .modal-body').focus(); });
+    $('#termsofuse').on('shown', function () { $('#termsofuse .modal-body').focus(); });
+    $('#frauddis').on('shown', function () { $('#frauddis .modal-body').focus(); });
+    $("#privacy_to_termsofuse").click(function(){
+        $("#privacypolicy").modal("hide");
+        $("#termsofuse").modal("show");
+    });
+    $("#learnmore_to_privacy").click(function(){
+        $("#risk_exp").modal("hide");
+        $("#privacypolicy").modal("show");
+    });
+    $('.modal').on('shown',function () { var offset = $(this).offset().top; $(window).scrollTop(offset); });
+    $('.modal').on('shown',function () {
+    $(this).keydown(function(e)
+    {
+        if(e.keyCode == 40){$('this.modal-body').scrollTop($('.modal-body').scrollTop()+10);}
+        if(e.keyCode == 38){$('this.modal-body').scrollTop($('.modal-body').scrollTop()-10);}
+
+    });
+    });
+
+     {% include 'scroll_loan.js' %}
+  });
+
+</script>
+{% endblock scripts %}
+{% block page_scripts %}
+{% endblock page_scripts %}
+</body>
+</html>
